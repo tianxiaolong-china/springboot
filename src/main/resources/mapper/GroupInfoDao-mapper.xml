@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.txl.demo.dao.GroupInfoDao">
+    <insert id="insert" parameterType="com.txl.demo.dao.GroupInfo" >
+        INSERT INTO group_info(group_id,group_name,file_path) VALUES
+        (#{groupId},#{groupName},#{filePath})
+    </insert>
+
+    <select id="query" resultType="com.txl.demo.dao.GroupInfo"
+            parameterType="java.lang.String">
+        SELECT group_id groupId, group_name groupName, file_path filePath FROM group_info WHERE group_id = #{groupId}
+    </select>
+
+    <delete id="delete" parameterType="java.lang.String">
+        DELETE FROM group_info WHERE group_id = #{groupId}
+    </delete>
+
+    <update id="update" parameterType="com.txl.demo.dao.GroupInfo">
+        UPDATE group_info SET group_name=#{groupName},file_path=#{filePath} WHERE group_id = #{groupId}
+    </update>
+</mapper>
