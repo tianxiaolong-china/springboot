@@ -23,7 +23,7 @@ public class HelloController {
     private GroupInfoDao groupInfoDao;
 
     @RequestMapping(method = RequestMethod.GET , value = "/hello")
-    @ApiVersion(1)
+    @ApiVersion(1.1)
     public Object getHello(){
         GroupInfo query = groupInfoDao.query("2");
         GroupInfo groupInfo = new GroupInfo();
@@ -59,13 +59,33 @@ public class HelloController {
     }
 
     @RequestMapping(method = RequestMethod.GET , value = "/hello")
+    @ApiVersion(value = 2.3,isUsing = true, expireDate = "2018-5-1 0:0:0")
     public Object getHelloV3(){
         return "hello";
     }
 
     @RequestMapping(method = RequestMethod.GET , value = "/test")
-    public Object getTestV3(){
-        return "test";
+    @ApiVersion(1.3)
+    public Object getTestV13(){
+        return "test V13";
+    }
+
+    @RequestMapping(method = RequestMethod.GET , value = "/test")
+    @ApiVersion(value = 1.1,expireDate = "2016-6-8 0:0:0")
+    public Object getTestV11(){
+        return "test V11";
+    }
+
+    @RequestMapping(method = RequestMethod.GET , value = "/test")
+    @ApiVersion(value = 1.5,isUsing = false)
+    public Object getTestV15(){
+        return "test V15";
+    }
+
+    @RequestMapping(method = RequestMethod.GET , value = "/test")
+    @ApiVersion(2.1)
+    public Object getTestV21(){
+        return "test V21";
     }
 
     public RestConnection getRestConnection() {
